@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>multimon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #000000;
+      overflow: hidden;
+      font-family: 'VT323', monospace;
+      position: relative;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center; /* Center items horizontally */
+      padding: 10px 0; /* Adjusted padding */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+
+    .navbar a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 27px; /* Halfway increased font size */
+      transition: color 0.3s ease-in-out;
+      display: flex;
+      align-items: center; /* Center text vertically with logos */
+      margin: 0 15px; /* Adjusted margin */
+    }
+
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      opacity: 0.8; /* Start with higher opacity */
+      animation: moveParticles 6s linear infinite, fadeIn 3s ease-in-out infinite; /* Combined animations */
+    }
+
+    @keyframes moveParticles {
+      from {
+        transform: translate(0, 0);
+      }
+      to {
+        transform: translate(100vw, 100vh);
+      }
+    }
+
+    @keyframes fadeIn {
+      0%, 100% {
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 0; /* Fade out at 50% of the animation */
+      }
+    }
+
+    .content {
+      text-align: center;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 42px; /* Halfway increased font size */
+      color: #ffffff;
+      margin-bottom: 15px; /* Adjusted margin */
+      letter-spacing: 1px; /* Adjusted letter spacing */
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 33px; /* Halfway increased font size */
+      color: #ffffff;
+      margin-bottom: 25px; /* Adjusted margin */
+    }
+
+    .text-shadow {
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8); /* Adjusted shadow */
+    }
+
+    /* New styles for logos */
+    .logo {
+      width: 60px; /* Halfway increased logo size */
+      height: 60px; /* Halfway increased logo size */
+      margin-right: 10px; /* Adjusted margin */
+    }
+
+    /* Adjust image width based on screen size */
+    img {
+      width: 80%; /* Adjusted image width */
+      max-width: 450px; /* Maximum width */
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="https://github.com/multimon-org" target="_blank">
+      <img class="logo" src="github.png" alt="GitHub">
+      GitHub
+    </a>
+    <a href="https://discord.gg/WAYxwWjWJh" target="_blank">
+      <img class="logo" src="discord.png" alt="Discord">
+      Discord
+    </a>
+  </div>
+  <div class="particles">
+    <!-- Generate and position particles using JavaScript -->
+  </div>
+  <div class="content">
+    <h1 class="text-shadow">Something Amazing is Hatching Soon!</h1>
+    <p class="text-shadow">Get ready for an exciting new adventure!</p>
+    <img src="pokemon.gif" alt="Pokemon Egg" width="450">
+  </div>
+  <script>
+    const particleContainer = document.querySelector('.particles');
+
+    function createParticles() {
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.width = `${Math.random() * 12}px`; /* Adjusted particle size */
+        particle.style.height = particle.style.width;
+        particle.style.animation = `moveParticles ${Math.random() * 8 + 4}s linear infinite ${Math.random() * 3}s`;
+        particleContainer.appendChild(particle);
+      }
+    }
+
+    createParticles();
+  </script>
+</body>
+</html>
