@@ -1,7 +1,7 @@
 name: Move new PRs into Validate
 
 on:
-  issues:
+  pull_request:
     types: [opened]
 
 jobs:
