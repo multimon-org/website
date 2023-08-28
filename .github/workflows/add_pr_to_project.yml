@@ -1,13 +1,18 @@
-name: Add PR to Validate Column
-on: [pull_request]
+name: Add PR to multimon project
+
+on:
+  pull_request:
+    types:
+      - opened
+
 jobs:
-  add-new-pr-to-validate-column:
+  add-to-project:
+    name: Add PR to project
     runs-on: ubuntu-latest
     steps:
-    - name: add-new-pr-to-validate-column
-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      if: github.event_name == 'pull_request' && github.event.action == 'opened'
-      env:
-        GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-        GITHUB_PROJECT_URL: https://github.com/orgs/multimon-org/projects/2
-        GITHUB_PROJECT_COLUMN_NAME: Validate
+      - uses: actions/add-to-project@v0.1.0
+        with:
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/orgs/multimon-org/projects/2
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
