@@ -1,0 +1,15 @@
+name: Move new PRs into Validate
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  automate-project-columns:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: alex-page/github-project-automation-plus@v0.8.3
+        with:
+          project: multimon
+          column: Validate
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
