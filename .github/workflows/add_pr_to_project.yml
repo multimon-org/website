@@ -1,12 +1,13 @@
-on:
-  pull_request:
-    types: [opened]
+name: Add PR to Validate Column
+on: [pull_request]
 jobs:
-  Add_New_Issue_To_Project:
+  add-new-pr-to-validate-column:
     runs-on: ubuntu-latest
     steps:
-    - uses: konradpabjan/actions-add-new-issue-to-column@v1.1
-      with:
-        action-token: "${{ secrets.ADD_TO_PROJECT_PAT }}"
-        project-url: "https://github.com/orgs/multimon-org/projects/2"
-        column-name: "Validate"
+    - name: add-new-pr-to-validate-column
+      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+      env:
+        GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+        GITHUB_PROJECT_URL: https://github.com/orgs/multimon-org/projects/2
+        GITHUB_PROJECT_COLUMN_NAME: Validate
